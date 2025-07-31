@@ -6,7 +6,8 @@ import LCD as lcd
 import time
 import sys
 
-mot = MotionSensor(17) #sensor on pin 17, 3.3 V
+# ---Hardware Setup---
+mot = MotionSensor(17)
 red0 = LED(21)
 red1 = LED(13)
 green0 = LED(5)
@@ -23,23 +24,28 @@ if __name__ == '__main__':
             lcd.clear()
             print("Motion detected!")
             lcd.write(0,0, "Motion Detected!")
+            motion = True
             while alarm != 5:
                 red0.on()
                 bz.on()
-                time.sleep(0.35)
+                time.sleep(1)
                 bz.off()
                 red0.off()
                 red1.on()
                 bz.on()
-                time.sleep(0.35)
+                time.sleep(1)
                 bz.off()
                 red1.off()
                 alarm = alarm + 1
+            alarm = 0
                 
             mot.wait_for_no_motion() #wait for no motion to be detected
             lcd.clear()
             print("No motion")
+            motion = False
             lcd.write(0,0, "No Motion")
+            try:
+                while motion == False:
           
     # When 'Ctrl+C' is pressed, the program
     # destroy() will be  executed.
