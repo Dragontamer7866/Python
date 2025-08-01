@@ -1,8 +1,10 @@
 from SimpleMFRC522 import SimpleMFRC522
 from gpiozero import MotionSensor
+from termcolor import colored
 from gpiozero import Buzzer
 from gpiozero import LED
 import LCD as lcd
+import colorama
 import time
 import sys
 
@@ -56,7 +58,7 @@ if __name__ == '__main__':
                 green0.off()
             
             else:
-                print
+                print(colored("ALERT: BREAK IN!", 'red' attrs=["Underline"]))
           
     except KeyboardInterrupt:
         GPIO.cleanup()
