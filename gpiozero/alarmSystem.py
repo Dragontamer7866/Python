@@ -58,7 +58,7 @@ if __name__ == '__main__':
                 green0.off()
             
             else:
-                print(colored("ALERT: BREAK IN!", 'red' attrs=["Underline"]))
+                print(colored("ALERT: BREAK IN!", 'red', attrs=["Underline"]))
           
     except KeyboardInterrupt:
         GPIO.cleanup()
