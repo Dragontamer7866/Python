@@ -20,7 +20,7 @@ alarm = 0
 if __name__ == '__main__':
     try:
         while(True):
-            mot.wait_for_motion() #wait for motion to be detected
+            mot.wait_for_motion()
             lcd.clear()
             print("Motion detected!")
             lcd.write(0,0, "Motion Detected!")
@@ -39,15 +39,25 @@ if __name__ == '__main__':
                 alarm = alarm + 1
             alarm = 0
                 
-            mot.wait_for_no_motion() #wait for no motion to be detected
+            mot.wait_for_no_motion()
             lcd.clear()
             print("No motion")
             motion = False
             lcd.write(0,0, "No Motion")
-            try:
-                while motion == False:
+            print("Hold a tag near the reader to disarm")
+            id, text = reader.read()
+            if id == [PLACEHOLDER] and text == "Charles Dudley":
+                print("ID: %s\nText: %s" % (id,text))
+                green0.on()
+                bz.on()
+                time.sleep(1)
+                bz.off()
+                time.sleep(9)
+                green0.off()
+            
+            else:
+                print
           
-    # When 'Ctrl+C' is pressed, the program
-    # destroy() will be  executed.
     except KeyboardInterrupt:
+        GPIO.cleanup()
         destroy() 
