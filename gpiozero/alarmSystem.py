@@ -50,32 +50,32 @@ if __name__ == '__main__':
                     print("No motion")
                     motion = False
                     lcd.write(0,0, "No Motion")
-                    """
-                    if id == 45610763277:
-                        print("ID: %s\nText: %s" % (id,text))
-                        lcd.clear()
-                        lcd.write(0,0, "Welcome")
-                        lcd.write(0,1, text)
-                        blue0.on()
-                        bz.on()
-                        time.sleep(1)
-                        bz.off()
-                        time.sleep(9)
-                        blue0.off()
-                
-                    else:
-                        print(f"{formatted_datetime}: Suspicious actvity detected. Invalid card used")
-                        lcd.clear()
-                        lcd.write(0,0, "Invaild card") 
-                        lcd.write(0,1, "detected")
-                        bz.on()
-                        red0.on()
-                        red1.on()
-                        time.sleep(10)
-                        red0.off()
-                        red1.off()
-                        bz.off()
-                    """
+                    if keyboard.is_pressed('space'):
+                        id, text = reader.read()
+                        if id == 45610763277:
+                            print("ID: %s\nText: %s" % (id,text))
+                            lcd.clear()
+                            lcd.write(0,0, "Welcome")
+                            lcd.write(0,1, text)
+                            blue0.on()
+                            bz.on()
+                            time.sleep(1)
+                            bz.off()
+                            time.sleep(9)
+                            blue0.off()
+                    
+                        else:
+                            print(f"{formatted_datetime}: Suspicious actvity detected. Invalid card used")
+                            lcd.clear()
+                            lcd.write(0,0, "Invaild card") 
+                            lcd.write(0,1, "detected")
+                            bz.on()
+                            red0.on()
+                            red1.on()
+                            time.sleep(10)
+                            red0.off()
+                            red1.off()
+                            bz.off()
       
     except KeyboardInterrupt:
         GPIO.cleanup()
